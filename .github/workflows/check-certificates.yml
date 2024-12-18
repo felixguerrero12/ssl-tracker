@@ -1,0 +1,15 @@
+name: Check SSL Certificates
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run at midnight every day
+
+jobs:
+  check-certificates:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Certificates
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            https://your-domain.com/api/cron/check-certificates 
